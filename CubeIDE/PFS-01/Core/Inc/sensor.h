@@ -111,6 +111,11 @@ static const uint8_t PCA9547_ADDR = 0x74<<1; //1,1,1,0,A2,A1,A0 A2=1, A1=A0=0
 static const uint8_t PS_CHANNEL_ARRAY_PCA9457[PS_CHANNEL_NUM] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};//PCA9457 channel format ch0,1,2,3,4,5,6,7
 
 static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x70<<1, 0x71<<1, 0x72<<1, 0x73<<1};
+//static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x74<<1, 0x74<<1, 0x74<<1, 0x74<<1};
+//static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x70<<1, 0x70<<1, 0x70<<1, 0x70<<1};
+//static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x71<<1, 0x71<<1, 0x71<<1, 0x71<<1};
+//static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x72<<1, 0x72<<1, 0x72<<1, 0x72<<1};
+//static const uint8_t PCA9547_ADDR_ARRAY[PCA9547_NUM] = {0x74<<1, 0x73<<1, 0x73<<1, 0x73<<1, 0x73<<1};
 //PFS-01A       : 1,1,1,0,A2,A1,A0 A2=1, A1=0, A0=0
 //PFS-01B(Right): 1,1,1,0,A2,A1,A0 A2=0, A1=0, A0=0
 //PFS-01A(Left) : 1,1,1,0,A2,A1,A0 A2=0, A1=0, A0=1
