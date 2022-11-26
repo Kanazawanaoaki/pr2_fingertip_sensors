@@ -183,6 +183,10 @@ static const uint8_t ADS7828_ADDR_ARRAY[ADS7828_NUM] = {0x48<<1, 0x49<<1, 0x4A<<
 #define SPI_SLAVE 1
 #define SPI_SLAVE_STATENUM 2
 
+// SLAVE MODE
+#define PR2_SPI_SLAVE 0
+#define UART_SLAVE 1
+
 uint8_t debug_buffer[2048];
 uint8_t gyro_buffer[512];
 uint8_t acc_buffer[512];
@@ -251,6 +255,7 @@ struct sensor_params {
 	uint8_t i2c1_dma_flag;
 
 	uint8_t spi_slave_flag;
+	uint8_t slave_mode;
 };
 
 extern struct sensor_params sp;

@@ -156,6 +156,9 @@ int main(void)
 
   sp.spi_slave_flag = 0;
 
+  //sp.slave_mode = PR2_SPI_SLAVE; // for PR2 slabe
+  sp.slave_mode = UART_SLAVE; //for general use
+
   ps_init(&hi2c1);
 
   imu_init(&hspi3);
@@ -776,10 +779,12 @@ void StartLEDTask(void const * argument)
   for(;;)
   {
 	  HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-	  txbuff_update();
-	  for(int i=0; i < TXBUFF_LENGTH * SPI_SLAVE_STATENUM; i++){
-		  printf("txbuff_state_flatten[%d]:%d \r\n", i ,sp.txbuff_state_flatten[i]);
-		  //HAL_UART_Transmit(&huart1, sp.txbuff_state_flatten, TXBUFF_LENGTH * SPI_SLAVE_STATENUM, HAL_MAX_DELAY);
+	  if (sp.slave_mode == UART_SLAVE){
+		  txbuff_update();
+		  for(int i=0; i < TXBUFF_LENGTH * SPI_SLAVE_STATENUM; i++){
+			  printf("txbuff_state_flatten[%d]:%d \r\n", i ,sp.txbuff_state_flatten[i]);
+			  //HAL_UART_Transmit(&huart1, sp.txbuff_state_flatten, TXBUFF_LENGTH * SPI_SLAVE_STATENUM, HAL_MAX_DELAY);
+		  }
 	  }
 	  osDelay(50);
   }
