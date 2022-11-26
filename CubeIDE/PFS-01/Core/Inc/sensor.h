@@ -199,6 +199,8 @@ struct sensor_params {
 	uint8_t rxbuff[1];
 	uint8_t txbuff[TXBUFF_LENGTH];
 	uint8_t txbuff_state[SPI_SLAVE_STATENUM][TXBUFF_LENGTH];
+	uint8_t txbuff_state_flatten[TXBUFF_LENGTH * 2];
+	//uint8_t txbuff_state[2][TXBUFF_LENGTH];
 
 	// read write data
 	uint8_t id;

@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "sensor.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,6 +103,11 @@ void txbuff_update();
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int _write(int file, char *ptr, int len)
+{
+  HAL_UART_Transmit(&huart1,(uint8_t *)ptr,len,HAL_MAX_DELAY);
+  return len;
+}
 
 /* USER CODE END 0 */
 
@@ -764,27 +770,17 @@ void StartADCTask(void const * argument)
 void StartLEDTask(void const * argument)
 {
   /* USER CODE BEGIN StartLEDTask */
-	uint8_t test[TXBUFF_LENGTH];
-	for(int i=0; i < TXBUFF_LENGTH; i++){
-		test[i] = i;
-	}
+	  setbuf(stdout, NULL);
+
   /* Infinite loop */
   for(;;)
   {
 	  HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-	  char buffer[100];
-	  // sprintf(buffer, "Hello:%d\n", 100);
-      // HAL_UART_Transmit(&huart1, buffer, strlen((char*)buffer), 1000);
-	  // HAL_UART_Transmit(&huart1, sp.txbuff_state[sp.spi_slave_flag], TXBUFF_LENGTH, 1000);
-		for(int i=0; i < TXBUFF_LENGTH; i++){
-			sprintf(buffer, "%d", test[i]);
-			HAL_UART_Transmit(&huart1, buffer, strlen((char*)buffer), 1000);
-			//sp.txbuff_state[sp.spi_slave_flag],,
-			//TXBUFF_LENGTH,
-			//10);
-		}
-		sprintf(buffer, "\n");
-		HAL_UART_Transmit(&huart1, buffer, strlen((char*)buffer), 1000);
+	  txbuff_update();
+	  for(int i=0; i < TXBUFF_LENGTH * SPI_SLAVE_STATENUM; i++){
+		  printf("txbuff_state_flatten[%d]:%d \r\n", i ,sp.txbuff_state_flatten[i]);
+		  //HAL_UART_Transmit(&huart1, sp.txbuff_state_flatten, TXBUFF_LENGTH * SPI_SLAVE_STATENUM, HAL_MAX_DELAY);
+	  }
 	  osDelay(50);
   }
   /* USER CODE END StartLEDTask */
