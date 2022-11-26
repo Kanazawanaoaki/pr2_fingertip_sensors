@@ -781,9 +781,8 @@ void StartLEDTask(void const * argument)
 	  HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
 	  if (sp.slave_mode == UART_SLAVE){
 		  txbuff_update();
-		  for(int i=0; i < TXBUFF_LENGTH * SPI_SLAVE_STATENUM; i++){
-			  printf("txbuff_state_flatten[%d]:%d \r\n", i ,sp.txbuff_state_flatten[i]);
-			  //HAL_UART_Transmit(&huart1, sp.txbuff_state_flatten, TXBUFF_LENGTH * SPI_SLAVE_STATENUM, HAL_MAX_DELAY);
+		  for(int i=0; i < SERIAL_PUBLISH_LENGTH; i++){
+			  printf("serial_publish_flatten[%d]:%d \r\n", i ,sp.serial_publish_flatten[i]);
 		  }
 	  }
 	  osDelay(50);
