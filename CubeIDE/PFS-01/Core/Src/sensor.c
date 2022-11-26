@@ -101,8 +101,6 @@ void txbuff_update(){//max: uint8_t * 44:
 	sp.txbuff_state[sp.spi_slave_flag][TXBUFF_LENGTH - 2] = (((sp.board_select & 0x0f) << 4) | (sp.spi_slave_flag & 0x0f));
 	sp.txbuff_state[sp.spi_slave_flag][TXBUFF_LENGTH - 1] = check_sum & 0x00ff;
 
-
-
 	sp.spi_slave_flag += 1;
 	if(sp.spi_slave_flag == SPI_SLAVE_STATENUM){
 		sp.spi_slave_flag = 0;
